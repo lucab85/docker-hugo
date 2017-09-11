@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+RUN apk add --update --update-cache --no-cache curl
+
+WORKDIR /site
+
+ADD test.sh /site/test.sh
+
+CMD ["sh", "test.sh"]
