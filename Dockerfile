@@ -17,13 +17,13 @@ RUN tar xzf /tmp/${HUGO_BINARY}.tar.gz -C /usr/local/bin/ \
 RUN mkdir -p /site
 WORKDIR /site
 
-# Expose default hugo port
+# Exposed hugo port
 EXPOSE 80
 
 # Automatically build site
-ONBUILD ADD site /site
-ONBUILD RUN /usr/local/bin/hugo -d /site
+ADD site /site
+RUN /usr/local/bin/hugo -d /site
 
 # By default, serve site
-ENV HUGO_BASE_URL http://localhost:80
-CMD hugo server -b ${HUGO_BASE_URL} --bind=0.0.0.0
+ENV HUGO_PORT 80
+RUN /usr/local/bin/hugo server -d /site --port ${HUGO_PORT} --bind=0.0.0.0

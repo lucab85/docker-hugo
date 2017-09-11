@@ -1,5 +1,5 @@
 sleep 5
-if curl web; then
+if curl http://localhost:80; then
   echo "Tests passed!"
   exit 0
 else
